@@ -37,7 +37,7 @@
 
 ---
 
-<img align="left" alt="miladfarazian's Github Stats" src="https://github-readme-stats.vercel.app/api?username=MiladFarazian&show_icons=true&hide_border=true" />
+[![Milad's github stats](https://github-readme-stats.vercel.app/api?username=MiladFarazian)](https://github.com/MiladFarazian/github-readme-stats)
 
 [website]: https://miladfarazian.com
 [twitter]: https://twitter.com/miladfarazian
