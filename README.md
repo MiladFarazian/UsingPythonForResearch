@@ -42,3 +42,5 @@
 [instagram]: https://instagram.com/miladfarazian
 [linkedin]: https://linkedin.com/in/miladfar
 [nothing]: https://github.com/MiladFarazian
+[edx]: https://courses.edx.org/courses/course-v1:HarvardX+PH526x+2T2020/course/
+[mosh]: https://codewithmosh.com/courses/enrolled
