@@ -1,0 +1,359 @@
+>>> import pandas as pd
+>>> birddata = pd.read_csv("bird_tracking.csv")
+>>> birddata.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 61920 entries, 0 to 61919
+Data columns (total 9 columns):
+ #   Column              Non-Null Count  Dtype
+---  ------              --------------  -----
+ 0   Unnamed: 0          61920 non-null  int64
+ 1   altitude            61920 non-null  int64
+ 2   date_time           61920 non-null  object
+ 3   device_info_serial  61920 non-null  int64
+ 4   direction           61477 non-null  float64
+ 5   latitude            61920 non-null  float64
+ 6   longitude           61920 non-null  float64
+ 7   speed_2d            61477 non-null  float64
+ 8   bird_name           61920 non-null  object
+dtypes: float64(4), int64(3), object(2)
+memory usage: 4.3+ MB
+>>> birddata.head()
+   Unnamed: 0  altitude               date_time  device_info_serial  ...   latitude  longitude  speed_2d  bird_name
+0           0        71  2013-08-15 00:18:08+00                 851  ...  49.419860   2.120733  0.150000       Eric
+1           1        68  2013-08-15 00:48:07+00                 851  ...  49.419880   2.120746  2.438360       Eric
+2           2        68  2013-08-15 01:17:58+00                 851  ...  49.420310   2.120885  0.596657       Eric
+3           3        73  2013-08-15 01:47:51+00                 851  ...  49.420359   2.120859  0.310161       Eric
+4           4        69  2013-08-15 02:17:42+00                 851  ...  49.420331   2.120887  0.193132       Eric
+
+[5 rows x 9 columns]
+>>> import matplotlib.pyplot as plt
+>>> import numpy as np
+>>> ix = birddata.bird_name == "Eric"
+>>> x, y = birddata.longitude[ix], birddata.latitude[ix]
+>>> plt.figure(figsize=(7,7))
+<Figure size 700x700 with 0 Axes>
+>>> plt.plot(x,y,".")
+[<matplotlib.lines.Line2D object at 0x0000012A53D26F60>]
+>>> plt.savefig("flight_pattern.pdf")
+>>> bird_names = pd.unique(birddata.bird_name)
+>>> bird_names
+array(['Eric', 'Nico', 'Sanne'], dtype=object)
+>>> for bird_name in birdnames:
+... ix = birddata.bird_name == bird_name
+  File "<stdin>", line 2
+    ix = birddata.bird_name == bird_name
+     ^
+IndentationError: expected an indented block
+>>>     ix = birddata.bird_name == bird_name
+  File "<stdin>", line 1
+    ix = birddata.bird_name == bird_name
+    ^
+IndentationError: unexpected indent
+>>> for bird_name in birdnames:
+...     ix = birddata.bird_name == bird_name
+...     x, y = birdata.longitude[ix], birddata.latitude[ix]
+...     plt.plot(x,y,".")
+... plt.xlabel("Longitude")
+  File "<stdin>", line 5
+    plt.xlabel("Longitude")
+      ^
+SyntaxError: invalid syntax
+>>> plt.xlabel("Longitude")
+Text(0.5, 34.76812499999999, 'Longitude')
+>>> plt.ylabel("Latitude")
+Text(39.28125, 0.5, 'Latitude')
+>>> plt.legend(loc="lower right")
+No handles with labels found to put in legend.
+<matplotlib.legend.Legend object at 0x0000012A429AF898>
+>>> plt.savefig("3traj.pdf")
+>>> bird_names = pd.unique(birddata.bird_name)
+>>> for bird_name in birdnames:
+...     ix = birddata.bird_name == bird_name
+...     x, y = birdata.longitude[ix], birddata.latitude[ix]
+...     plt.plot(x,y,".")
+... plt.xlabel("Longitude")
+  File "<stdin>", line 5
+    plt.xlabel("Longitude")
+      ^
+SyntaxError: invalid syntax
+>>> plt.ylabel("Latitude")
+Text(39.28125, 0.5, 'Latitude')
+>>> bird_names = pd.unique(birddata.bird_name)
+>>> plt.figure(figsize=(7,7))
+<Figure size 700x700 with 0 Axes>
+>>> for bird_name in birdnames:
+...     ix = birddata.bird_name == bird_name
+...     x, y = birdata.longitude[ix], birddata.latitude[ix]
+...     plt.plot(x,y,".", label="bird_name")
+... plt.xlabel("Longitude")
+  File "<stdin>", line 5
+    plt.xlabel("Longitude")
+      ^
+SyntaxError: invalid syntax
+>>> plt.ylabel("Latitude")
+Text(0, 0.5, 'Latitude')
+>>> plt.legend(loc="lower right")
+No handles with labels found to put in legend.
+<matplotlib.legend.Legend object at 0x0000012A5486D898>
+>>> plt.savefig("3traj.pdf")
+
+
+(base) C:\Users\lionc\OneDrive\Documents\Jupyter_Notebook\Case_Study_5>python
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import panda as pd
+
+
+(base) C:\Users\lionc\OneDrive\Documents\Jupyter_Notebook\Case_Study_5>python
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import pandas as pd
+>>> birddata = pd.read_csv("bird_tracking.csv")
+
+
+(base) C:\Users\lionc\OneDrive\Documents\Jupyter_Notebook\Case_Study_5>python
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import pandas as pd
+>>> birddata = pd.read_csv("bird_tracking.csv")
+>>> import matplotlib.pyplot as plt
+>>> import numpy as np
+>>> bird_names = pd.unique(birddata.bird_name)
+>>> plt.figure(figsize=(7,7))
+<Figure size 700x700 with 0 Axes>
+>>> for bird_name in bird_names:
+...     ix = birddata.bird_name == bird_name
+...     x, y = birddata.longitude[ix], birddata.latitude[ix]
+...     plt.plot(x,y,".",label=bird_name)
+...
+[<matplotlib.lines.Line2D object at 0x00000271D4A78518>]
+[<matplotlib.lines.Line2D object at 0x00000271D5BC78D0>]
+[<matplotlib.lines.Line2D object at 0x00000271D5BC7780>]
+>>> plt.xlabel("Longitude")
+Text(0.5, 0, 'Longitude')
+>>> plt.ylabel("Latitude")
+Text(0, 0.5, 'Latitude')
+>>> plt.legend(loc="lower right")
+<matplotlib.legend.Legend object at 0x00000271D5C382E8>
+>>> plt.savefig("3traj.pdf")
+>>> ix = birddata.bird_name == "Eric"
+>>> speed = birddata.speed_2d[ix]
+>>> plt.hist(speed)
+C:\Users\lionc\AppData\Roaming\Python\Python37\site-packages\numpy\lib\histograms.py:839: RuntimeWarning: invalid value encountered in greater_equal
+  keep = (tmp_a >= first_edge)
+C:\Users\lionc\AppData\Roaming\Python\Python37\site-packages\numpy\lib\histograms.py:840: RuntimeWarning: invalid value encountered in less_equal
+  keep &= (tmp_a <= last_edge)
+(array([1.7732e+04, 1.5020e+03, 3.6900e+02, 7.8000e+01, 1.2000e+01,
+       7.0000e+00, 3.0000e+00, 2.0000e+00, 3.0000e+00, 2.0000e+00]), array([ 0.        ,  6.34880658, 12.69761316, 19.04641974, 25.39522632,
+       31.7440329 , 38.09283948, 44.44164607, 50.79045265, 57.13925923,
+       63.48806581]), <a list of 10 Patch objects>)
+>>> speed[:10]
+0    0.150000
+1    2.438360
+2    0.596657
+3    0.310161
+4    0.193132
+5    2.904772
+6    3.080584
+7    2.199659
+8    2.640076
+9    4.592211
+Name: speed_2d, dtype: float64
+>>> plt.hist(speed[:10])
+(array([3., 1., 0., 0., 1., 2., 2., 0., 0., 1.]), array([0.15      , 0.59422108, 1.03844216, 1.48266324, 1.92688432,
+       2.3711054 , 2.81532648, 3.25954756, 3.70376864, 4.14798972,
+       4.5922108 ]), <a list of 10 Patch objects>)
+>>> np.isnan(speed)
+0        False
+1        False
+2        False
+3        False
+4        False
+         ...
+19790    False
+19791    False
+19792    False
+19793    False
+19794    False
+Name: speed_2d, Length: 19795, dtype: bool
+>>> np.isnan(speed).any()
+True
+>>> np.sum(np.isnan(speed))
+85
+>>> ind = np.isnan(speed)
+>>> ind
+0        False
+1        False
+2        False
+3        False
+4        False
+         ...
+19790    False
+19791    False
+19792    False
+19793    False
+19794    False
+Name: speed_2d, Length: 19795, dtype: bool
+>>> ~ind
+0        True
+1        True
+2        True
+3        True
+4        True
+         ...
+19790    True
+19791    True
+19792    True
+19793    True
+19794    True
+Name: speed_2d, Length: 19795, dtype: bool
+>>> ind
+0        False
+1        False
+2        False
+3        False
+4        False
+         ...
+19790    False
+19791    False
+19792    False
+19793    False
+19794    False
+Name: speed_2d, Length: 19795, dtype: bool
+>>> plt.hist(speed[~ind])
+(array([1.7732e+04, 1.5020e+03, 3.6900e+02, 7.8000e+01, 1.2000e+01,
+       7.0000e+00, 3.0000e+00, 2.0000e+00, 3.0000e+00, 2.0000e+00]), array([ 0.        ,  6.34880658, 12.69761316, 19.04641974, 25.39522632,
+       31.7440329 , 38.09283948, 44.44164607, 50.79045265, 57.13925923,
+       63.48806581]), <a list of 10 Patch objects>)
+>>> plt.savefig("hist.pdf")
+>>> plt.figure(figsize=(7,7))
+<Figure size 700x700 with 0 Axes>
+>>> plt.hist(speed[~ind])
+(array([1.7732e+04, 1.5020e+03, 3.6900e+02, 7.8000e+01, 1.2000e+01,
+       7.0000e+00, 3.0000e+00, 2.0000e+00, 3.0000e+00, 2.0000e+00]), array([ 0.        ,  6.34880658, 12.69761316, 19.04641974, 25.39522632,
+       31.7440329 , 38.09283948, 44.44164607, 50.79045265, 57.13925923,
+       63.48806581]), <a list of 10 Patch objects>)
+>>> plt.savefig("hist.pdf")
+>>> plt.figure(figsize=(8,4))
+<Figure size 800x400 with 0 Axes>
+>>> speed = birddata.speed_2d[birddata.bird_name == "Eric"]
+>>> ind = np.isnan(speed)
+
+>>> plt.xlabel("2D speed (m/s)")
+Text(0.5, 0, '2D speed (m/s)')
+>>> plt.ylabel("Frequency")
+Text(0, 0.5, 'Frequency')
+>>> plt.savefig("hist2.pdf")
+>>> birddata.date_time[0:3]
+0    2013-08-15 00:18:08+00
+1    2013-08-15 00:48:07+00
+2    2013-08-15 01:17:58+00
+Name: date_time, dtype: object
+>>> import datetime
+>>> datetime.datetime.today()
+datetime.datetime(2020, 7, 31, 15, 59, 4, 48348)
+>>> time_1 = datetime.datetime.today()
+>>> time_2 = datetime.datetime.today()
+>>> time_2-time_1
+datetime.timedelta(seconds=15, microseconds=390186)
+>>> time_2 = datetime.datetime.today()
+>>> time_2-time_1
+datetime.timedelta(seconds=42, microseconds=749181)
+>>> date_str = birddata.date_time[0]
+>>> date_str
+'2013-08-15 00:18:08+00'
+>>> date_str[:-3]
+'2013-08-15 00:18:08'
+
+>>> datetime.datetime.strptime(date_str[:-3], "%Y-%m-%d %H:%M:%S")
+datetime.datetime(2013, 8, 15, 0, 18, 8)
+>>> timestamps = []
+>>> for k in range(len(birddata)):
+...     timestamps.append(datetime.datetime.strptime(birddata.date_time.iloc[k][:-3], "%Y-%m-%d %H:%M:%S"))
+...
+>>> timestamps[0:3]
+[datetime.datetime(2013, 8, 15, 0, 18, 8), datetime.datetime(2013, 8, 15, 0, 48, 7), datetime.datetime(2013, 8, 15, 1, 17, 58)]
+>>> birddata["timestamp"] = pd.Series(timestamps, index = birddata.index)
+>>> birddata.head()
+   Unnamed: 0  altitude               date_time  ...  speed_2d  bird_name           timestamp
+0           0        71  2013-08-15 00:18:08+00  ...  0.150000       Eric 2013-08-15 00:18:08
+1           1        68  2013-08-15 00:48:07+00  ...  2.438360       Eric 2013-08-15 00:48:07
+2           2        68  2013-08-15 01:17:58+00  ...  0.596657       Eric 2013-08-15 01:17:58
+3           3        73  2013-08-15 01:47:51+00  ...  0.310161       Eric 2013-08-15 01:47:51
+4           4        69  2013-08-15 02:17:42+00  ...  0.193132       Eric 2013-08-15 02:17:42
+
+[5 rows x 10 columns]
+>>> birddata.timestamp[4] - birddata.timestamp[3]
+Timedelta('0 days 00:29:51')
+>>> time = birddata.timestamp[birddata.bird_name == "Eric"]
+>>> times = birddata.timestamp[birddata.bird_name == "Eric"]
+>>> elasped_time = [time - times[0] for time in times]
+>>> elasped_time[0]
+Timedelta('0 days 00:00:00')
+>>> elasped_time[1000]
+Timedelta('12 days 02:02:00')
+>>> elapsed_time = [time - times[0] for time in times]
+>>> elapsed_time[1000] / datatime.timedelta(days=1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'datatime' is not defined
+>>> elapsed_time[1000] / datetime.timedelta(days=1)
+12.084722222222222
+>>> plt.plot(np.array(elapsed_time)/datetime.timedelta(days=1))
+[<matplotlib.lines.Line2D object at 0x00000271D5C38198>]
+>>> plt.xlabel("Observation")
+Text(0.5, 11.008124999999996, 'Observation')
+>>> plt.ylabel("Elapsed time (days)")
+Text(29.203125, 0.5, 'Elapsed time (days)')
+>>> plt.savefig("timeplot.pdf")
+>>> plt.figure(300,20000)
+
+>>> plt.figure(figsize=(7,7))
+<Figure size 700x700 with 0 Axes>
+>>> plt.plot(np.array(elapsed_time)/datetime.timedelta(days=1))
+[<matplotlib.lines.Line2D object at 0x00000271DEE3AF60>]
+>>> plt.xlabel("Observation")
+Text(0.5, 0, 'Observation')
+>>> plt.ylabel("Elapsed time (days)")
+Text(0, 0.5, 'Elapsed time (days)')
+>>> plt.savefig("timeplot.pdf")
+>>> data = birddata[birddata.bird_name == "Eric"]
+>>> times = data.timestamp
+>>> elapsed_time = [time - times[0] for time in times]
+>>> elapsed_days = np.array(elapsed_time) /datetime.timedelta(days=1)
+>>> next_day = 1
+>>> inds = []
+>>> daily_mean_speed = []
+>>> for (i,t) in enumerate(elapsed_days):
+...     if t < next_day:
+...             inds.append(i)
+...     else:
+...             daily_mean_speed.append(np.mean(data.speed_2d[inds]))
+...             next_day += 1
+...             inds = []
+...
+>>> plt.figure(figsize=(8,6))
+<Figure size 800x600 with 0 Axes>
+>>> plt.plot(daily_mean_speed)
+[<matplotlib.lines.Line2D object at 0x00000271DEE9FBA8>]
+>>> plt.xlabel("Day")
+Text(0.5, 0, 'Day')
+>>> plt.ylabel("Mean speed (m/s)")
+Text(0, 0.5, 'Mean speed (m/s)')
+>>> plt.savefig("dms.pdf")
+>>> sanne_time_data = birddata[birddata.bird_name == "Sanne"]
+>>> sanne_time_data
+       Unnamed: 0  altitude               date_time  ...  speed_2d  bird_name           timestamp
+40916       40916        55  2013-08-15 00:01:08+00  ...  0.372156      Sanne 2013-08-15 00:01:08
+40917       40917        54  2013-08-15 00:31:00+00  ...  1.318484      Sanne 2013-08-15 00:31:00
+40918       40918        55  2013-08-15 01:01:19+00  ...  0.076158      Sanne 2013-08-15 01:01:19
+40919       40919        56  2013-08-15 01:31:38+00  ...  0.014142      Sanne 2013-08-15 01:31:38
+40920       40920        55  2013-08-15 02:01:24+00  ...  0.094340      Sanne 2013-08-15 02:01:24
+...           ...       ...                     ...  ...       ...        ...                 ...
+61915       61915        11  2014-04-30 22:00:08+00  ...  0.208087      Sanne 2014-04-30 22:00:08
+61916       61916         6  2014-04-30 22:29:57+00  ...  1.522662      Sanne 2014-04-30 22:29:57
+61917       61917         5  2014-04-30 22:59:52+00  ...  3.120545      Sanne 2014-04-30 22:59:52
+61918       61918        16  2014-04-30 23:29:43+00  ...  0.592115      Sanne 2014-04-30 23:29:43
+61919       61919         9  2014-04-30 23:59:34+00  ...  0.485489      Sanne 2014-04-30 23:59:34
+
+[21004 rows x 10 columns]

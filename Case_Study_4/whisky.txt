@@ -1,0 +1,178 @@
+>>> import numpy as np
+>>> import pandas as pd
+>>> whisky = pd.read_csv("whiskies.txt")
+>>> whisky["Region"] = pd.read_csv("regions.txt")
+>>> whisky.head()
+   RowID Distillery  Body  Sweetness  Smoky  ...  Floral     Postcode   Latitude   Longitude     Region
+0      1  Aberfeldy     2          2      2  ...       2   \tPH15 2EB     286580      749680  Highlands
+1      2   Aberlour     3          3      1  ...       2   \tAB38 9PJ     326340      842570   Speyside
+2      3     AnCnoc     1          3      2  ...       2    \tAB5 5LI     352960      839320  Highlands
+3      4     Ardbeg     4          1      4  ...       0   \tPA42 7EB     141560      646220      Islay
+4      5    Ardmore     2          2      2  ...       1   \tAB54 4NH     355350      829140  Highlands
+
+[5 rows x 18 columns]
+>>> whisky.iloc[0:10]
+   RowID    Distillery  Body  Sweetness  Smoky  ...  Floral     Postcode   Latitude   Longitude     Region
+0      1     Aberfeldy     2          2      2  ...       2   \tPH15 2EB     286580      749680  Highlands
+1      2      Aberlour     3          3      1  ...       2   \tAB38 9PJ     326340      842570   Speyside
+2      3        AnCnoc     1          3      2  ...       2    \tAB5 5LI     352960      839320  Highlands
+3      4        Ardbeg     4          1      4  ...       0   \tPA42 7EB     141560      646220      Islay
+4      5       Ardmore     2          2      2  ...       1   \tAB54 4NH     355350      829140  Highlands
+5      6   ArranIsleOf     2          3      1  ...       2     KA27 8HJ     194050      649950    Islands
+6      7  Auchentoshan     0          2      0  ...       3      G81 4SJ     247670      672610   Lowlands
+7      8     Auchroisk     2          3      1  ...       1   \tAB55 3XS     340754      848623   Speyside
+8      9      Aultmore     2          2      1  ...       2   \tAB55 3QY     340754      848623   Speyside
+9     10      Balblair     2          3      2  ...       1   \tIV19 1LB     270820      885770  Highlands
+
+[10 rows x 18 columns]
+>>> whisky.iloc[5:10, 0:5]
+   RowID    Distillery  Body  Sweetness  Smoky
+5      6   ArranIsleOf     2          3      1
+6      7  Auchentoshan     0          2      0
+7      8     Auchroisk     2          3      1
+8      9      Aultmore     2          2      1
+9     10      Balblair     2          3      2
+>>> whisky.columns
+Index(['RowID', 'Distillery', 'Body', 'Sweetness', 'Smoky', 'Medicinal',
+       'Tobacco', 'Honey', 'Spicy', 'Winey', 'Nutty', 'Malty', 'Fruity',
+       'Floral', 'Postcode', ' Latitude', ' Longitude', 'Region'],
+      dtype='object')
+>>> flavors = whisky.iloc[:,2:14]
+>>> flavors
+    Body  Sweetness  Smoky  Medicinal  Tobacco  Honey  Spicy  Winey  Nutty  Malty  Fruity  Floral
+0      2          2      2          0        0      2      1      2      2      2       2       2
+1      3          3      1          0        0      4      3      2      2      3       3       2
+2      1          3      2          0        0      2      0      0      2      2       3       2
+3      4          1      4          4        0      0      2      0      1      2       1       0
+4      2          2      2          0        0      1      1      1      2      3       1       1
+..   ...        ...    ...        ...      ...    ...    ...    ...    ...    ...     ...     ...
+81     1          1      1          0        0      1      0      0      1      2       2       2
+82     2          3      2          0        0      2      2      1      1      2       0       1
+83     0          3      1          0        0      2      2      1      1      2       1       2
+84     2          2      1          0        0      1      0      1      2      1       0       0
+85     2          3      0          0        1      0      2      1      1      2       2       1
+
+[86 rows x 12 columns]
+>>> pcorr_flavors = pd.DataFrame.corr(flavors)
+>>> corr_flavors = pd.DataFrame.corr(flavors)
+>>> print(corr_flavors)
+               Body  Sweetness     Smoky  Medicinal   Tobacco  ...     Winey     Nutty     Malty    Fruity    Floral
+Body       1.000000  -0.136518  0.524032   0.354050  0.168718  ...  0.408576  0.126323 -0.116859 -0.013205 -0.461203
+Sweetness -0.136518   1.000000 -0.405897  -0.392017 -0.147871  ...  0.115727 -0.032493 -0.001516  0.019820  0.144987
+Smoky      0.524032  -0.405897  1.000000   0.686071  0.365501  ... -0.028190 -0.023132 -0.192875 -0.312970 -0.431663
+Medicinal  0.354050  -0.392017  0.686071   1.000000  0.425106  ... -0.202651 -0.113671 -0.258959 -0.330975 -0.511323
+Tobacco    0.168718  -0.147871  0.365501   0.425106  1.000000  ...  0.009097 -0.117717 -0.059347 -0.235145 -0.212375
+Honey      0.082031   0.132558 -0.195318  -0.396629 -0.275490  ...  0.362021  0.188492  0.310184  0.108822  0.183029
+Spicy      0.188500  -0.054200  0.231745   0.044903  0.054068  ...  0.092704 -0.042856  0.036303  0.144714  0.034663
+Winey      0.408576   0.115727 -0.028190  -0.202651  0.009097  ...  1.000000  0.198467  0.112368  0.090694 -0.126932
+Nutty      0.126323  -0.032493 -0.023132  -0.113671 -0.117717  ...  0.198467  1.000000  0.066157  0.071765  0.018302
+Malty     -0.116859  -0.001516 -0.192875  -0.258959 -0.059347  ...  0.112368  0.066157  1.000000  0.207288  0.106309
+Fruity    -0.013205   0.019820 -0.312970  -0.330975 -0.235145  ...  0.090694  0.071765  0.207288  1.000000  0.262336
+Floral    -0.461203   0.144987 -0.431663  -0.511323 -0.212375  ... -0.126932  0.018302  0.106309  0.262336  1.000000
+
+[12 rows x 12 columns]
+>>> import matplotlib.pyplot as plt
+>>> plt.figure(figsize=(10,10))
+<Figure size 1000x1000 with 0 Axes>
+>>> plt.pcolor(corr_flavors)
+<matplotlib.collections.PolyCollection object at 0x0000017602202EF0>
+>>> plt.colorbar()
+<matplotlib.colorbar.Colorbar object at 0x0000017602993F28>
+>>> plt.savefig("flavor")
+>>> plt.savefig("flavor.pdf")
+>>> corr_whisky = pd.DataFrame.corr(flavors.transpose())
+>>> plt.figure(figsize=(10,10))
+<Figure size 1000x1000 with 0 Axes>
+>>> plt.pcolor(corr_whisky)
+<matplotlib.collections.PolyCollection object at 0x0000017602819F98>
+>>> plt.colorbar()
+<matplotlib.colorbar.Colorbar object at 0x000001760278D4E0>
+>>> plt.savefig("corr_whisky.png")
+>>> plt.savefig("corr_whisky.pdf")
+>>> plt.axis("tight")
+(0.0, 86.0, 0.0, 86.0)
+>>> plt.savefig("corr_whisky.png")
+>>> plt.savefig("corr_whisky.png")
+>>> from sklearn.cluster.bicluster import SpectralCoclustering
+>>> model = SpectralCoclustering(n_clusters=6, random_state=0)
+>>> model.fit(corr_whisky)
+>>> model.rows_
+array([[False, False, False, False, False,  True, False, False, False,
+        False, False,  True, False,  True, False, False,  True, False,
+         True, False, False, False, False, False, False, False, False,
+        False, False, False, False, False,  True,  True,  True, False,
+        False, False,  True, False,  True, False, False, False, False,
+         True, False,  True,  True, False, False, False, False, False,
+         True, False, False, False, False,  True, False, False, False,
+        False, False, False, False, False, False,  True, False, False,
+         True, False, False, False, False, False, False, False,  True,
+        False, False,  True, False,  True],
+       [False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False,  True, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False,  True, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False,  True, False, False, False, False, False, False, False,
+        False, False, False,  True, False,  True, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False],
+       [False,  True, False, False, False, False, False,  True, False,
+        False,  True, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False,  True,
+         True, False,  True, False, False, False, False, False, False,
+         True, False, False, False, False, False,  True,  True,  True,
+        False, False, False, False, False, False,  True,  True,  True,
+        False, False, False, False, False, False, False, False,  True,
+        False, False,  True, False, False, False, False,  True, False,
+        False, False,  True, False, False, False, False, False, False,
+        False,  True, False,  True, False],
+       [False, False,  True, False, False, False,  True, False, False,
+         True, False, False, False, False, False, False, False, False,
+        False, False,  True, False,  True, False,  True,  True, False,
+        False,  True, False,  True, False, False, False, False, False,
+        False,  True, False, False, False,  True, False, False, False,
+        False, False, False, False,  True,  True, False, False, False,
+        False, False, False, False, False, False,  True, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False,  True, False, False,  True, False,
+         True, False, False, False, False],
+       [False, False, False,  True, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False,  True, False,  True, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False,  True,  True, False, False, False, False,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False, False,  True, False, False, False,
+        False, False, False, False, False],
+       [ True, False, False, False,  True, False, False, False,  True,
+        False, False, False,  True, False,  True,  True, False,  True,
+        False, False, False, False, False, False, False, False, False,
+        False, False, False, False,  True, False, False, False,  True,
+        False, False, False, False, False, False, False, False, False,
+        False,  True, False, False, False, False, False, False, False,
+        False, False,  True, False, False, False, False,  True, False,
+         True,  True, False, False,  True, False, False, False,  True,
+        False,  True, False,  True, False, False,  True, False, False,
+        False, False, False, False, False]])
+>>> np.sum(model.rows_, axis=1)
+array([20,  5, 19, 17,  6, 19])
+>>> np.sum(model.rows_, axis=0)
+array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+>>> model.row_labels
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'SpectralCoclustering' object has no attribute 'row_labels'
+>>> model.row_labels_
+array([5, 2, 3, 4, 5, 0, 3, 2, 5, 3, 2, 0, 5, 0, 5, 5, 0, 5, 0, 1, 3, 4,
+       3, 4, 3, 3, 2, 2, 3, 2, 3, 5, 0, 0, 0, 5, 2, 3, 0, 1, 0, 3, 2, 2,
+       2, 0, 5, 0, 0, 3, 3, 2, 2, 2, 0, 1, 5, 4, 4, 0, 3, 5, 2, 5, 5, 2,
+       1, 5, 1, 0, 2, 5, 0, 5, 2, 5, 3, 4, 5, 3, 0, 3, 2, 0, 2, 0])
+>>> whisky["Group"] = pd.Series(model.row_labels_, index=whisky.index)
+>>> whisky = whisky.ix[np.argsort(model.row_labels_)]
+>>> whisky.iloc[:,2:14
