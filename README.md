@@ -2,7 +2,7 @@
 
 ## I'm a Student, Athlete, and Team Player!
 
-- 🌱 I’m currently learning a [Python for Research][edx] and a [React Native Course!][mosh]
+- 🌱 I’m currently learning a [Python for Research Course][edx] and a [React Native Course!][mosh]
 - 👯 I’m looking to collaborate with other software developers
 - 🥅 2020 Goals: Contribute more to Open Source projects
 - ⚡ Fun fact: I love swimming and going to the
@@ -47,5 +47,4 @@
 [youtube]: https://youtube.com/miladfarazian
 [instagram]: https://instagram.com/miladfarazian
 [linkedin]: https://linkedin.com/in/miladfar
-
-[webdevplaylist]: [][jsplaylist]: [][cssplaylist]: [][reactplaylist]: []
+[edx]: https://courses.edx.org/courses/course-v1:HarvardX+PH526x+2T2020/course/
