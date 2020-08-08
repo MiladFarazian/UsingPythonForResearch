@@ -39,7 +39,7 @@
 
 ---
 
-[![Milad's github stats](https://github-readme-stats.vercel.app/api?username=MiladFarazian)](https://github.com/MiladFarazian/github-readme-stats)
+[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 [website]: https://miladfarazian.com
 [twitter]: https://twitter.com/miladfarazian
