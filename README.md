@@ -38,10 +38,12 @@
 <br />
 
 ---
-<div>
-  [![Milad's github stats](https://github-readme-stats.vercel.app/api?username=MiladFarazian)](https://github.com/anuraghazra/github-readme-stats) 
-  [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=MiladFarazian&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-<div>
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
 
 [website]: https://miladfarazian.com
 [twitter]: https://twitter.com/miladfarazian
