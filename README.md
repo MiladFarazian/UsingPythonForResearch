@@ -1,6 +1,6 @@
 ### Hi there, I'm [Milad][website] 👋
 
-## I'm a Student, Athlete, and Team Player!
+## I'm a Student, Software Developer, and Team Player!
 
 - 🌱 I’m currently learning a [Python for Research][edx] and a [React Native Course!][mosh]
 - 👯 I’m looking to collaborate with other software developers
