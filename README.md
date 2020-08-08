@@ -43,7 +43,7 @@
 [twitter]: https://twitter.com/miladfarazian
 [youtube]: https://youtube.com/miladfarazian
 [instagram]: https://instagram.com/miladfarazian
-[linkedin]: https://linkedin.com/in/miladfar
+[linkedin]: https://linkedin.com/in/miladfarazian
 [nothing]: https://github.com/MiladFarazian
 [edx]: https://courses.edx.org/courses/course-v1:HarvardX+PH526x+2T2020/course/
 [mosh]: https://codewithmosh.com/courses/enrolled/887220
