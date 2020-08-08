@@ -2,10 +2,10 @@
 
 ## I'm a Student, Software Developer, and Team Player!
 
-- 🌱 I’m currently learning a [Python for Research][edx] and a [React Native Course!][mosh]
-- 👯 I’m looking to collaborate with other software developers
-- 🥅 2020 Goals: Contribute more to Open Source projects
-- ⚡ Fun fact: I love swimming and going to the
+- 🌱 I’m currently learning a [Python for Research Course][edx] and a [React Native Course!][mosh]
+- 👯 I’m looking to collaborate with other software developers on a meaningful project
+- 🥅 2020 Goals: Gain the neccesary skills to enhance my understanding of Data Science and Machine Learning
+- ⚡ Fun fact: I love swimming and going to the beach. I like to dance too!
 
 ### Connect with me:
 
