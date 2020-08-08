@@ -58,6 +58,7 @@
 [mongodb]: https://github.com/topics/mongodb
 [git]: https://github.com/topics/git
 [github]: https://github.com/topics/github
+[terminal]: https://github.com/topics/terminal
 [bootstrap]: https://github.com/topics/bootstrap
 [java]: https://github.com/topics/java
 [python]: https://github.com/topics/python
