@@ -39,8 +39,8 @@
 
 ---
 
-[![Milad's github stats](https://github-readme-stats.vercel.app/api?username=MiladFarazian)](https://github.com/anuraghazra/github-readme-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=MiladFarazian&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Milad's github stats](https://github-readme-stats.vercel.app/api?username=MiladFarazian)](https://github.com/anuraghazra/github-readme-stats = 100x20)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=MiladFarazian&layout=compact)](https://github.com/anuraghazra/github-readme-stats = 100x20)
 
 [website]: https://miladfarazian.com
 [twitter]: https://twitter.com/miladfarazian
