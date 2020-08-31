@@ -92,7 +92,7 @@ n_rows = data.shape[0]
 # Enter your code here.
 random.seed(123)
 selection = random.sample(range(n_rows), 10)
-print(selection)
+print(selection) 
 
 my_predictions = np.array([knn_predict(p, predictors[training_indices,:], outcomes[training_indices], 5) for p in predictors[selection]])
 percentage = accuracy(my_predictions, data.high_quality.iloc[selection])
