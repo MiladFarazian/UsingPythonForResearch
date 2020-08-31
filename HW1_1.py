@@ -96,6 +96,16 @@ address_count = counter(address)
 
 print(address_count)
 
+"""{'F': 1, 'o': 93, 'u': 21, 'r': 79, 's': 44, 'c': 31, 'e': 165, 'a': 102,
+'n': 76, 'd': 58, 'v': 24, 'y': 10, 'g': 27, 'f': 26, 't': 124,
+'h': 80, 'b': 13, 'i': 65, 'w': 26, 'L': 1, 'p': 15, 'l': 41, 
+'m': 13, 'q': 1, 'N': 1, 'W': 2, 'I': 3, 'B': 1, 'T': 2, 'k': 3, 'G': 1}
+
+Exercise 1f
+The frequency of each letter in the Gettysburg Address is already
+stored as address_count. Use this dictionary to find the most
+common letter in the Gettysburg address."""
+
 max_value = 0
 desired_key = ""
 for key in address_count: 
