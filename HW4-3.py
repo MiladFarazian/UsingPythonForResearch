@@ -38,10 +38,13 @@ from collections import Counter
 import numpy as np
 ​
 def marginal_prob(chars):
-    # Enter code here!
-        
+    frequencies = dict(Counter(chars.values()))
+    sum_frequencies = sum(frequencies.values())
+    return {char: freq / sum_frequencies for char, freq in frequencies.items()}
+                
 def chance_homophily(chars):
-    # Enter code here!
+    marginal_probs = marginal_prob(chars)
+    return np.sum(np.square(list(marginal_probs.values())))
 ​
 favorite_colors = {
     "ankit":  "red",
@@ -53,6 +56,8 @@ color_homophily = chance_homophily(favorite_colors)
 print(color_homophily)
 
 """
+0.5555555555555556
+
 Exercise 2
 In the remaining exercises, we will calculate actual homophily in 
 these village and compare the obtained values to those obtained by
@@ -75,12 +80,20 @@ Use the head method to display the first few entries of df1.
 import pandas as pd
 ​
 df  = pd.read_csv("https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@individual_characteristics.csv", low_memory=False, index_col=0)
-df1 = # Enter code here!
-df2 = # Enter code here!
-​
-# Enter code here!
+df1 = df[df["village"]==1]
+df2 = df[df["village"]==2]
+
+df1.head()
 
 """
+village	adjmatrix_key	pid	hhid	resp_id	resp_gend	resp_status	age	religion	caste	...	privategovt	work_outside	work_outside_freq	shgparticipate	shg_no	savings	savings_no	electioncard	rationcard	rationcard_colour
+0	1	5	100201	1002	1	1	Head of Household	38	HINDUISM	OBC	...	PRIVATE BUSINESS	Yes	0.0	No	NaN	No	NaN	Yes	Yes	GREEN
+1	1	6	100202	1002	2	2	Spouse of Head of Household	27	HINDUISM	OBC	...	NaN	NaN	NaN	No	NaN	No	NaN	Yes	Yes	GREEN
+2	1	23	100601	1006	1	1	Head of Household	29	HINDUISM	OBC	...	OTHER LAND	No	NaN	No	NaN	No	NaN	Yes	Yes	GREEN
+3	1	24	100602	1006	2	2	Spouse of Head of Household	24	HINDUISM	OBC	...	PRIVATE BUSINESS	No	NaN	Yes	1.0	Yes	1.0	Yes	No	NaN
+4	1	27	100701	1007	1	1	Head of Household	58	HINDUISM	OBC	...	OTHER LAND	No	NaN	No	NaN	No	NaN	Yes	Yes	GREEN
+5 rows × 48 columns
+
 Exercise 3
 In this exercise, we define a few dictionaries that enable us to 
 look up the sex, caste, and religion of members of each village 
@@ -97,13 +110,19 @@ For Village 2, store these dictionaries into variables named sex2,
 caste2, and religion2.
 """
 
-sex1      = # Enter code here!
-caste1    = # Enter code here!
-religion1 = # Enter code here!
-​
-# Continue for df2 as well.
+sex1 = df1.set_index("pid")["resp_gend"].to_dict()
+caste1 = df1.set_index("pid")["caste"].to_dict()
+religion1 = df1.set_index("pid")["religion"].to_dict()
+
+sex2 = df2.set_index("pid")["resp_gend"].to_dict()
+caste2 = df2.set_index("pid")["caste"].to_dict()
+religion2 = df2.set_index("pid")["religion"].to_dict()
+
+caste2[202802]
 ​
 """
+OBC
+
 Exercise 4
 In this exercise, we will print the chance homophily of several 
 characteristics of Villages 1 and 2.
@@ -114,9 +133,22 @@ caste, and religion In Villages 1 and 2. Is the chance homophily
 for any attribute very high for either village?
 """
 
-# Enter your code here.
+print("Village 1 chance of same sex:", chance_homophily(sex1))
+print("Village 1 chance of same caste:", chance_homophily(caste1))
+print("Village 1 chance of same religion:", chance_homophily(religion1))
+
+print("Village 2 chance of same sex:", chance_homophily(sex2))
+print("Village 2 chance of same caste:", chance_homophily(caste2))
+print("Village 2 chance of same religion:", chance_homophily(religion2))
 ​
 """
+Village 1 chance of same sex: 0.5027299861680701
+Village 1 chance of same caste: 0.6741488509791551
+Village 1 chance of same religion: 0.9804896988521925
+Village 2 chance of same sex: 0.5005945303210464
+Village 2 chance of same caste: 0.425368244800893
+Village 2 chance of same religion: 1.0
+
 Exercise 5
 In this exercise, we will create a function that computes the 
 observed homophily given a village and characteristic.
@@ -142,10 +174,10 @@ def homophily(G, chars, IDs):
     for n1, n2 in G.edges():
         if IDs[n1] in chars and IDs[n2] in chars:
             if G.has_edge(n1, n2):
-                # Should `num_ties` be incremented?  What about `num_same_ties`?
+                num_ties += 1
                 if chars[IDs[n1]] == chars[IDs[n2]]:
-                    # Should `num_ties` be incremented?  What about `num_same_ties`?
-    return (num_same_ties / num_ties)    
+                    num_same_ties += 1
+    return (num_same_ties / num_ties)
 
 """
 Exercise 6
@@ -165,9 +197,15 @@ respectively.
 data_filepath1 = "https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@key_vilno_1.csv"
 data_filepath2 = "https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@key_vilno_2.csv"
 ​
-# Enter code here!
+pid1 = pd.read_csv(data_filepath1, index_col=0)
+pid2 = pd.read_csv(data_filepath2, index_col=0)
+
+pid1.iloc[100]
 ​
 """
+0    102205
+Name: 100, dtype: int64
+
 Exercise 7
 In this exercise, we will compute the homophily of several network 
 characteristics for Villages 1 and 2 and compare them to homophily 
@@ -192,5 +230,33 @@ G2 = nx.to_networkx_graph(A2)
 pid1 = pd.read_csv(data_filepath1, dtype=int)['0'].to_dict()
 pid2 = pd.read_csv(data_filepath2, dtype=int)['0'].to_dict()
 ​
-# Enter your code here!
-​
+print("Village 1 observed proportion of same sex:", homophily(G1, sex1, pid1))
+print("Village 1 observed proportion of same caste:", homophily(G1, caste1, pid1))
+print("Village 1 observed proportion of same religion:", homophily(G1, religion1, pid1))
+
+print("Village 2 observed proportion of same sex:", homophily(G2, sex2, pid2))
+print("Village 2 observed proportion of same caste:", homophily(G2, caste2, pid2))
+print("Village 2 observed proportion of same religion:", homophily(G2, religion2, pid2))
+
+print("Village 1 chance of same sex:", chance_homophily(sex1))
+print("Village 1 chance of same caste:", chance_homophily(caste1))
+print("Village 1 chance of same religion:", chance_homophily(religion1))
+
+print("Village 2 chance of same sex:", chance_homophily(sex2))
+print("Village 2 chance of same caste:", chance_homophily(caste2))
+print("Village 2 chance of same religion:", chance_homophily(religion2))
+
+"""
+Village 1 observed proportion of same sex: 0.5908629441624366
+Village 1 observed proportion of same caste: 0.7959390862944162
+Village 1 observed proportion of same religion: 0.9908629441624366
+Village 2 observed proportion of same sex: 0.5658073270013568
+Village 2 observed proportion of same caste: 0.8276797829036635
+Village 2 observed proportion of same religion: 1.0
+Village 1 chance of same sex: 0.5027299861680701
+Village 1 chance of same caste: 0.6741488509791551
+Village 1 chance of same religion: 0.9804896988521925
+Village 2 chance of same sex: 0.5005945303210464
+Village 2 chance of same caste: 0.425368244800893
+Village 2 chance of same religion: 1.0
+"""
