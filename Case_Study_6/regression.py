@@ -1,0 +1,47 @@
+import networkx as nx
+G = nx.Graph()
+G.add_node(1)
+G.add_nodes_from([2,3])
+G.add_nodes_from(["u","v"])
+G.nodes()
+"""NodeView((1, 2, 3, 'u', 'v'))"""
+G.add_edge(1,2)
+G.add_edge("u","v")
+G.add_edges_from([(1,3),(1,4),(1,5),(1,6)])
+G.add_edge("u","w")
+G.edges()
+"""EdgeView([(1, 2), (1, 3), (1, 4), (1, 5), (1, 6), ('u', 'v'), ('u', 'w')])"""
+G.remove_node(2)
+G.nodes()
+"""NodeView((1, 3, 'u', 'v', 4, 5, 6, 'w'))"""
+G.remove_nodes_from([4,5])
+G.nodes()
+"""NodeView((1, 3, 'u', 'v', 6, 'w'))"""
+G.remove_edge(1,3)
+G.edges()
+"""EdgeView([(1, 6), ('u', 'v'), ('u', 'w')])"""
+G.remove_edges_from([(1,2),("u","w")])
+G.edges()
+"""EdgeView([(1, 6), ('u', 'v')])"""
+G.number_of_nodes()
+"""6"""
+G.number_of_edges()
+"""2"""
+
+
+import networkx as nx
+G = nx.karate_club_graph()
+import matplotlib.pyplot as plt
+nx.draw(G, with_labels=True, node_color="lightblue", edge_color="gray")
+plt.savefig("karate_graph.pdf")
+G.degree()
+"""DegreeView({0: 16, 1: 9, 2: 10, 3: 6, 4: 3, 5: 4, 6: 4,
+7: 4, 8: 5, 9: 2, 10: 3, 11: 1, 12: 2, 13: 5, 14: 2, 15: 2, 
+16: 2, 17: 2, 18: 2, 19: 3, 20: 2, 21: 2, 22: 2, 23: 5, 
+24: 3, 25: 3, 26: 2, 27: 4, 28: 3, 29: 4, 30: 4, 31: 6, 
+32: 12, 33: 17})"""
+G.degree()[33]
+"""17"""
+G.degree(33)
+"""17"""
+

@@ -1,11 +1,21 @@
 """
 Using Python for Research Homework: Week 5, Case Study Part 1
-The movie dataset on which this case study is based is a database of 5000 movies catalogued by The Movie Database (TMDb). The information available about each movie is its budget, revenue, rating, actors and actresses, etc. In this case study, we will use this dataset to determine whether any information about a movie can predict the total revenue of a movie. We will also attempt to predict whether a movie's revenue will exceed its budget.
+The movie dataset on which this case study is based is a 
+database of 5000 movies catalogued by The Movie Database 
+(TMDb). The information available about each movie is its 
+budget, revenue, rating, actors and actresses, etc. In this 
+case study, we will use this dataset to determine whether any 
+information about a movie can predict the total revenue of a 
+movie. We will also attempt to predict whether a movie's 
+revenue will exceed its budget.
 
 In Part 1, we will inspect, clean, and transform the data.
 
 Exercise 1
-First, we will import several libraries. scikit-learn (sklearn) contains helpful statistical models, and we'll use the matplotlib.pyplot library for visualizations. Of course, we will use numpy and pandas for data manipulation throughout.
+First, we will import several libraries. scikit-learn (sklearn) 
+contains helpful statistical models, and we'll use the 
+matplotlib.pyplot library for visualizations. Of course, we will 
+use numpy and pandas for data manipulation throughout.
 
 Instructions
 Read and execute the given code.
@@ -39,11 +49,16 @@ budget	genres	homepage	id	keywords	original_language	original_title	overview	pop
 5 rows × 22 columns
 
 Exercise 2
-In this exercise, we will define the regression and classification outcomes. Specifically, we will use the revenue column as the target for regression. For classification, we will construct an indicator of profitability for each movie.
+In this exercise, we will define the regression and classification
+outcomes. Specifically, we will use the revenue column as the 
+target for regression. For classification, we will construct an 
+indicator of profitability for each movie.
 
 Instructions
-Create a new column in df called profitable, defined as 1 if the movie revenue is greater than the movie budget, and 0 otherwise.
-Next, define and store the outcomes we will use for regression and classification.
+Create a new column in df called profitable, defined as 1 if the 
+movie revenue is greater than the movie budget, and 0 otherwise.
+Next, define and store the outcomes we will use for regression and 
+classification.
 Define regression_target as the string 'revenue'.
 Define classification_target as the string 'profitable'.
 """
@@ -62,11 +77,16 @@ df['profitable'].value_counts()
 Name: profitable, dtype: int64
 
 Exercise 3
-For simplicity, we will proceed by analyzing only the rows without any missing data. In this exercise, we will remove rows with any infinite or missing values.
+For simplicity, we will proceed by analyzing only the rows 
+without any missing data. In this exercise, we will remove rows 
+with any infinite or missing values.
 
 Instructions
-Use df.replace() to replace any cells with type np.inf or -np.inf with np.nan.
-Drop all rows with any np.nan values in that row using df.dropna(). Do any further arguments need to be specified in this function to remove rows with any such values?
+Use df.replace() to replace any cells with type np.inf or -np.inf 
+with np.nan.
+Drop all rows with any np.nan values in that row using df.dropna(). 
+Do any further arguments need to be specified in this function to 
+remove rows with any such values?
 """
 
 df = df.replace([np.inf, -np.inf], np.nan)
@@ -78,11 +98,17 @@ df.shape
 (1406, 23)
 
 Exercise 4
-Many of the variables in our dataframe contain the names of genre, actors/actresses, and keywords. Let's add indicator columns for each genre.
+Many of the variables in our dataframe contain the names of genre, 
+actors/actresses, and keywords. Let's add indicator columns for each 
+genre.
 
 Instructions
-Determine all the genres in the genre column. Make sure to use the strip() function on each genre to remove trailing characters.
-Next, include each listed genre as a new column in the dataframe. Each element of these genre columns should be 1 if the movie belongs to that particular genre, and 0 otherwise. Keep in mind, a movie may belong to several genres at once.
+Determine all the genres in the genre column. Make sure to use the 
+strip() function on each genre to remove trailing characters.
+Next, include each listed genre as a new column in the dataframe. 
+Each element of these genre columns should be 1 if the movie belongs 
+to that particular genre, and 0 otherwise. Keep in mind, a movie may 
+belong to several genres at once.
 Call df[genres].head() to view your results.
 """
 
@@ -108,7 +134,11 @@ Action	Adventure	Fantasy	Science Fiction	Crime	Drama	Thriller	Animation	Family	W
 4	1	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 
 Exercise 5
-Some variables in the dataset are already numeric and perhaps useful for regression and classification. In this exercise, we will store the names of these variables for future use. We will also take a look at some of the continuous variables and outcomes by plotting each pair in a scatter plot. Finally, we will evaluate the skew of each variable.
+Some variables in the dataset are already numeric and perhaps useful 
+for regression and classification. In this exercise, we will store 
+the names of these variables for future use. We will also take a look 
+at some of the continuous variables and outcomes by plotting each pair 
+in a scatter plot. Finally, we will evaluate the skew of each variable.
 
 Instructions
 Call plt.show() to observe the plot below.
@@ -138,7 +168,12 @@ profitable     -1.081030
 dtype: float64
 
 Exercise 6
-It appears that the variables budget, popularity, runtime, vote_count, and revenue are all right-skewed. In this exercise, we will transform these variables to eliminate this skewness. Specifically, we will use the np.log10() method. Because some of these variable values are exactly 0, we will add a small positive value to each to ensure it is defined; this is necessary because log(0) is negative infinity.
+It appears that the variables budget, popularity, runtime, vote_count, 
+and revenue are all right-skewed. In this exercise, we will transform 
+these variables to eliminate this skewness. Specifically, we will use 
+the np.log10() method. Because some of these variable values are exactly
+0, we will add a small positive value to each to ensure it is defined; 
+this is necessary because log(0) is negative infinity.
 
 Instructions
 For each above-mentioned variable in df, transform value x into np.log10(1+x).
