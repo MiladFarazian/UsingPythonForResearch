@@ -254,6 +254,7 @@ plt.xlabel("Linear Classification Score")
 plt.ylabel("Forest Classification Score")
 ​
 # Show the plot.
+plt.show()
 ​
 # Print the importance of each covariate in the random forest classification.
 forest_classifier.fit(positive_revenue_df[all_covariates], positive_revenue_df[classification_target])
